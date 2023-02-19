@@ -116,39 +116,7 @@
 					reader.readAsDataURL(blob);
 				}
 			};
-						input.onpaste = function(event)
-			{
-				// use event.originalEvent.clipboard for newer chrome versions
-				var clipboardData = event.clipboardData || event.originalEvent.clipboardData;
-				var items = clipboardData.items;
-				console.log(JSON.stringify(items)); // will give you the mime types
-				// find pasted image among pasted items
-				var blob;
-				for (var i = 0; i < items.length; i++)
-				{
-					if (items[i].type.indexOf("image") === 0)
-					{
-						blob = items[i].getAsFile();
-					}
-				}
-				// load image if there is a pasted image
-				if (blob !== null)
-				{
-					var reader = new FileReader();
-					reader.onload = function(event)
-					{
-						//console.log(event.target.result); // data url!
-						img = document.getElementById("pastedImage");
-						img.src = event.target.result;
-						if( img.complete )
-							DrawCanvas(0);
-						else
-							img.onload = function() { DrawCanvas(0); };
-					};
-					
-					reader.readAsDataURL(blob);
-				}
-			};
+						
 		}
 
 		canvas.onmousedown = function(event) {
